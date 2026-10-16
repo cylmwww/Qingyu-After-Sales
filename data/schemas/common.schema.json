@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "common.schema.json",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nullable_timestamp": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "money": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nullable_money": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "category": {
+      "enum": [
+        "apparel_footwear",
+        "digital_accessories",
+        "customized"
+      ]
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ]
+      },
+      "minItems": 1
+    },
+    "review_status": {
+      "enum": [
+        "pending_human",
+        "approved"
+      ]
+    },
+    "selection_event": {
+      "enum": [
+        "purchased_at",
+        "after_sales_applied_at"
+      ]
+    },
+    "ref": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "policy",
+            "policy_rule",
+            "faq",
+            "customer",
+            "product",
+            "campaign",
+            "order",
+            "order_line",
+            "payment",
+            "logistics",
+            "after_sale",
+            "refund",
+            "snapshot",
+            "user_turn",
+            "fixture",
+            "system_constraint",
+            "authorization_result"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9-]+$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "condition": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "neq",
+            "in",
+            "lte",
+            "gte",
+            "is_known"
+          ]
+        },
+        "value": {}
+      },
+      "required": [
+        "field",
+        "op",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "action": {
+      "enum": [
+        "answer",
+        "clarify",
+        "read_order",
+        "read_after_sales",
+        "read_logistics",
+        "read_knowledge",
+        "estimate_refund",
+        "create_handoff_summary",
+        "refuse_unauthorized"
+      ]
+    },
+    "selection": {
+      "type": "object",
+      "properties": {
+        "line_id": {
+          "type": "string",
+          "pattern": "^LINE-[A-Z0-9-]+$"
+        },
+        "unit_indices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "line_id",
+        "unit_indices"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

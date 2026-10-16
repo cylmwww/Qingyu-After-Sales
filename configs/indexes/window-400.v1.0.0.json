@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "window-400",
+  "version": "1.0.0",
+  "hypothesis": "仅改变拆分触发策略，目标400；观察长条款缩短后证据与条件是否损失。",
+  "chunk": {
+    "strategy": "token-window-v1",
+    "target_tokens": 400,
+    "max_tokens": 600,
+    "overlap_tokens": 60,
+    "parent_max_tokens": 1200,
+    "parent_relation": "bounded-rule-v1",
+    "tokenizer": "tiktoken-0.9.0-cl100k_base-estimate"
+  },
+  "embedding": {
+    "provider": "aliyun",
+    "model": "text-embedding-v4",
+    "dimensions": 1024,
+    "document_encoding": "title-scope-rule-v1",
+    "query_encoding": "raw-v1",
+    "normalization": "provider",
+    "revision": null
+  },
+  "search": "exact_cosine"
+}

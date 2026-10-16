@@ -1,0 +1,6 @@
+{
+  "id": "agent-fixed",
+  "version": "1.0.0",
+  "strategy": "fixed",
+  "experiment": true
+}

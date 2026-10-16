@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "faq.schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "schema_version": {
+      "enum": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    },
+    "shop_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "review_status": {
+      "$ref": "common.schema.json#/$defs/review_status"
+    },
+    "lifecycle": {
+      "const": "draft"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "version": {
+            "$ref": "common.schema.json#/$defs/version"
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paraphrases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "applicability": {
+            "type": "object",
+            "properties": {
+              "category_ids": {
+                "$ref": "common.schema.json#/$defs/categories"
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/condition"
+                },
+                "minItems": 0
+              },
+              "effective_from": {
+                "$ref": "common.schema.json#/$defs/timestamp"
+              },
+              "effective_until": {
+                "$ref": "common.schema.json#/$defs/nullable_timestamp"
+              },
+              "selection_event": {
+                "$ref": "common.schema.json#/$defs/selection_event"
+              }
+            },
+            "required": [
+              "category_ids",
+              "conditions",
+              "effective_from",
+              "effective_until",
+              "selection_event"
+            ],
+            "additionalProperties": false
+          },
+          "answer_parameters": {
+            "type": "object"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/ref"
+            },
+            "minItems": 1
+          },
+          "review_status": {
+            "$ref": "common.schema.json#/$defs/review_status"
+          },
+          "lifecycle": {
+            "const": "draft"
+          },
+          "evidence_time_bindings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "evidence_ref": {
+                  "$ref": "common.schema.json#/$defs/ref"
+                },
+                "selection_event": {
+                  "$ref": "common.schema.json#/$defs/selection_event"
+                },
+                "effective_from": {
+                  "$ref": "common.schema.json#/$defs/timestamp"
+                },
+                "effective_until": {
+                  "$ref": "common.schema.json#/$defs/nullable_timestamp"
+                }
+              },
+              "required": [
+                "evidence_ref",
+                "selection_event",
+                "effective_from",
+                "effective_until"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "question",
+          "paraphrases",
+          "answer",
+          "applicability",
+          "answer_parameters",
+          "evidence_refs",
+          "review_status",
+          "lifecycle"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "schema_version",
+    "shop_id",
+    "review_status",
+    "lifecycle",
+    "items"
+  ],
+  "additionalProperties": false
+}

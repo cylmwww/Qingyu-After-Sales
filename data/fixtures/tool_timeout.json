@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "id": "FIX-TOOL-TIMEOUT",
+  "version": "1.0.0",
+  "is_test_fixture": true,
+  "fixture_kind": "tool_timeout",
+  "description": "静态模拟售后查询超时：仅测试失败状态，不实现工具，不可回退为业务无记录。",
+  "base_snapshot_ref": {
+    "kind": "snapshot",
+    "id": "SNAP-DEMO-20261009",
+    "version": "1.1.0"
+  },
+  "operation": {
+    "tool": "get_after_sales",
+    "order_id": "ORD-006",
+    "status": "temporary_failure",
+    "error_code": "TIMEOUT",
+    "observed_at": "2026-10-09T10:00:00+08:00"
+  },
+  "expected_validation_errors": []
+}

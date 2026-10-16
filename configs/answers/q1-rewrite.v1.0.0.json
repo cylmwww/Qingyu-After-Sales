@@ -1,0 +1,8 @@
+{
+  "id": "q1-rewrite",
+  "version": "1.0.0",
+  "hypothesis": "相对Q0仅开启最多一次抽取式改写。",
+  "rewrite": {
+    "enabled": true
+  }
+}

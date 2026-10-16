@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "静态最小授权结果，不是服务实现",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "is_static_annotation": {
+      "const": true
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "version": {
+            "$ref": "common.schema.json#/$defs/version"
+          },
+          "shop_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "customer_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "requested_order_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "status": {
+            "const": "no_permission"
+          },
+          "observed_at": {
+            "$ref": "common.schema.json#/$defs/timestamp"
+          },
+          "data": {
+            "type": "null"
+          },
+          "error_code": {
+            "const": "ORDER_ACCESS_DENIED"
+          },
+          "is_static_annotation": {
+            "const": true
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "shop_id",
+          "customer_id",
+          "requested_order_id",
+          "status",
+          "observed_at",
+          "data",
+          "error_code",
+          "is_static_annotation"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "is_static_annotation",
+    "items"
+  ],
+  "additionalProperties": false
+}

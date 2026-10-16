@@ -1,0 +1,1402 @@
+{
+  "schema_version": "1.1.1",
+  "id": "FAQ-DATASET-001",
+  "version": "1.1.0",
+  "shop_id": "SHOP-DEMO-001",
+  "review_status": "approved",
+  "lifecycle": "draft",
+  "items": [
+    {
+      "id": "FAQ-001",
+      "version": "1.1.0",
+      "question": "无理由退货的七天从哪一刻开始算？",
+      "paraphrases": [
+        "是购买后七天还是收货后七天？",
+        "正好在签收七天的截止时刻申请可以吗？"
+      ],
+      "answer": "青屿示例店的无理由退货时间条件从有证据的签收时刻起算连续7×24小时，申请时刻不晚于截止时刻，恰好在截止边界也包含在内。尚未签收或签收、申请时刻缺失时，不能确定窗口，尤其不能凭购买日计算。满足七日窗口只是时间条件，还要共同满足相应品类政策；定制商品仍不支持无理由退货。 超出七日正常窗口后可生成交接摘要供人工裁量；最终是否受理未知，不能保证可退，也不能仅因超期断言人工必然拒绝。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "no_reason_window_days": 7,
+        "late_application_action": "manual_review"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-001",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-002",
+      "version": "1.0.0",
+      "question": "质量问题的三十天怎么判断，说有问题就能退吗？",
+      "paraphrases": [
+        "质量退换和七天无理由一样吗？",
+        "签收三十天内反馈质量问题是否一定能退？"
+      ],
+      "answer": "质量窗口从有证据的签收时刻起算连续30×24小时，以售后申请时刻不晚于截止时刻判断，含截止边界。质量仅被报告为reported不等于已核实的confirmed；窗口内申请且质量已核实，还要结合对应品类质量条款判断。超过三十日需人工裁量，时间证据缺失时先查证，不自动接受或拒绝。该规则只是虚构店铺演示约定，不主张真实法律期限。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "quality_window_days": 30,
+        "quality_confirmation_required": true
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-APP-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-CUS-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-003",
+      "version": "1.0.0",
+      "question": "你能直接退款、取消订单或者帮我改价吗？",
+      "paraphrases": [
+        "马上替我操作退款吧。",
+        "转人工之后是不是已经有人接手？"
+      ],
+      "answer": "本演示系统只查询、估算和解释，不执行退款、取消订单、改价等交易写操作。需要人工裁量时只能生成交接摘要；没有接入真实人工工单平台，不得说人工已经接手，也不能承诺处理或到账期限。政策条件满足不等于系统已经执行操作。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "scope": "read_only"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-004",
+      "version": "1.0.0",
+      "question": "鞋服吊牌、商品、包装都完整，也没在室外用过，可以无理由退吗？",
+      "paraphrases": [
+        "没穿出门且吊牌鞋盒都在能退吗？",
+        "商品完好、吊牌包装齐全的鞋服怎么判断？"
+      ],
+      "answer": "在无理由退货、吊牌完整、商品完整、未在室外使用、包装完整均已确认，且申请满足签收起7×24小时窗口的前提下，符合本店鞋服无理由退货条件。窗口包含截止边界，不能改用购买日计算。任何必要条件未知时不能保证可退；运费、关联赠品及退款金额还需依各自政策和订单证据说明，本系统不会执行退款。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          },
+          {
+            "field": "tags_intact",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "product_intact",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "used_outdoors",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "field": "packaging_intact",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "within_no_reason_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "eligible",
+        "no_reason_window_days": 7
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-APP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-001",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-005",
+      "version": "1.0.0",
+      "question": "衣服的吊牌已经剪掉，还能无理由退货吗？",
+      "paraphrases": [
+        "吊牌丢了但还在七天内能退吗？",
+        "没穿过但吊牌不完整可以直接退吗？"
+      ],
+      "answer": "鞋服无理由退货且吊牌不完整时，不符合该品类的无理由退货条件，七日内申请不能覆盖吊牌限制。本结论仅限无理由退货；若是已核实且在三十日质量窗口内的质量问题，应另按质量例外判断，不能因吊牌缺失直接阻断。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          },
+          {
+            "field": "tags_intact",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "ineligible"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-APP-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-APP-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-006",
+      "version": "1.0.0",
+      "question": "鞋盒扔了，但吊牌和鞋完整、没穿出门，能无理由退吗？",
+      "paraphrases": [
+        "包装缺了，其他状态完整是不是一律不能退？",
+        "没鞋盒是不是会自动扣包装费？"
+      ],
+      "answer": "无理由退货在签收起七日窗口内，包装不完整但吊牌完整、商品完整且未在室外使用时，需要人工判断。不能直接保证可退，也不能因为没有鞋盒一律拒绝；不得自动扣包装费或给出自动扣款金额。本系统只能整理交接摘要，不能声称人工已经接手。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          },
+          {
+            "field": "packaging_intact",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "field": "tags_intact",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "product_intact",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "used_outdoors",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "field": "within_no_reason_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "manual_review",
+        "no_reason_window_days": 7
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-APP-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-001",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-007",
+      "version": "1.0.0",
+      "question": "鞋服质量问题已核实且在三十日窗口内，缺鞋盒或吊牌还能退换吗？",
+      "paraphrases": [
+        "已经确认的质量问题会被缺吊牌挡住吗？",
+        "质量退换也必须鞋盒完整吗？"
+      ],
+      "answer": "质量问题已核实为confirmed，并有签收、申请时刻证据确认在签收起30×24小时窗口内时，符合鞋服质量退换条件；缺鞋盒或吊牌不完整不阻断这个质量例外。窗口包含截止边界，不能用购买日计算。仅有reported不适用这一结论，超过三十日需人工裁量；可退换也不等于已执行退款或确定金额。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "confirmed"
+          },
+          {
+            "field": "within_quality_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "eligible",
+        "quality_window_days": 30
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-APP-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-008",
+      "version": "1.0.0",
+      "question": "数码配件拆封了但未激活，商品和配件完整，可以无理由退吗？",
+      "paraphrases": [
+        "打开包装是不是一律不退？",
+        "没激活且东西齐全的配件能退吗？"
+      ],
+      "answer": "无理由退货且未激活、商品完整、配件齐全，并满足签收起7×24小时申请窗口时，符合数码配件无理由退货条件。拆封不是本店限制条件，不能把拆封当成激活；opened无论是否为真，都不能替代activated事实。激活、完整性、配件或时间证据缺失时先查明，不能保证可退；金额与执行另有边界。",
+      "applicability": {
+        "category_ids": [
+          "digital_accessories"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          },
+          {
+            "field": "activated",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "field": "product_intact",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "accessories_complete",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "field": "within_no_reason_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "eligible",
+        "no_reason_window_days": 7
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-DIG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-001",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-009",
+      "version": "1.0.0",
+      "question": "数码配件已经激活，七日内能无理由退货吗？",
+      "paraphrases": [
+        "配件都在但已经激活还能无理由退吗？",
+        "激活后只是不想要了能退吗？"
+      ],
+      "answer": "已激活的数码配件不符合无理由退货条件，即使申请在七日窗口内也不能忽略激活限制。这只限无理由退货；质量问题已核实且在三十日质量窗口内时，应按质量例外判断，激活本身不阻断该质量退换。",
+      "applicability": {
+        "category_ids": [
+          "digital_accessories"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          },
+          {
+            "field": "activated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "ineligible"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-DIG-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-010",
+      "version": "1.0.0",
+      "question": "已激活数码配件的质量问题已核实且在三十日窗口内，能退换吗？",
+      "paraphrases": [
+        "核实的质量问题会因为激活被拒绝吗？",
+        "数码配件质量退换还看未激活条件吗？"
+      ],
+      "answer": "质量问题已经核实为confirmed，且根据签收、申请时刻确认在签收起30×24小时窗口内时，符合数码配件质量退换条件。激活不阻断这个质量例外，不套用无理由退货的未激活限制。窗口包含截止边界；reported不能当成confirmed，超窗需人工裁量。本系统不会执行退款。",
+      "applicability": {
+        "category_ids": [
+          "digital_accessories"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "confirmed"
+          },
+          {
+            "field": "within_quality_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "eligible",
+        "quality_window_days": 30
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-011",
+      "version": "1.0.0",
+      "question": "数码配件未激活，但少了一件附件，能无理由退吗？",
+      "paraphrases": [
+        "未激活但配件不齐是不是直接可退？",
+        "少附件是否会自动扣标价？"
+      ],
+      "answer": "无理由退货、未激活但配件不齐时，品类规则要求人工判断，不能自动保证可退，也不能自动按配件宣传价扣款。本问答前提是申请满足签收起七日窗口；还需查明实际缺失和其他证据。资料缺失或人工裁量未明确前，不给确定退款金额。",
+      "applicability": {
+        "category_ids": [
+          "digital_accessories"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          },
+          {
+            "field": "activated",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "field": "accessories_complete",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "field": "within_no_reason_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "manual_review",
+        "no_reason_window_days": 7
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-DIG-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-001",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-012",
+      "version": "1.0.0",
+      "question": "定制商品不想要了，制作没开始就能退或取消吗？",
+      "paraphrases": [
+        "定制商品也有七天无理由吗？",
+        "还没制作，请直接帮我取消。"
+      ],
+      "answer": "定制商品不支持无理由退货，通用七日窗口不能覆盖这个品类限制。尚未开始制作也不能据此承诺取消订单；本系统只读，不执行取消、退款等操作。若是质量问题，应另按质量核验和三十日窗口规则判断，而不是把无理由限制套到质量申请上。",
+      "applicability": {
+        "category_ids": [
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "ineligible",
+        "scope": "read_only"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-CUS-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-013",
+      "version": "1.0.0",
+      "question": "定制商品质量问题已核实，且在三十日申请窗口内，可以退换吗？",
+      "paraphrases": [
+        "定制属性会挡住核实的质量退换吗？",
+        "定制商品确认有质量问题就只能拒绝吗？"
+      ],
+      "answer": "定制商品的质量问题已核实为confirmed，且根据签收与申请时刻确认在签收起30×24小时窗口内时，符合质量退换条件，定制商品的无理由限制不阻断该例外。窗口包含截止边界，缺少时间或核验证据不能直接保证可退换，超过三十日需人工裁量；金额和执行不由这条品类结论直接确定。",
+      "applicability": {
+        "category_ids": [
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "confirmed"
+          },
+          {
+            "field": "within_quality_window",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "eligible",
+        "quality_window_days": 30
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-CUS-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-014",
+      "version": "1.0.0",
+      "question": "我报告了定制商品的质量问题，现在能确定退款吗？",
+      "paraphrases": [
+        "定制商品说有问题就算质量确认了吗？",
+        "上传了问题描述，是否可以直接认定可退？"
+      ],
+      "answer": "质量状态只是reported时，需要核验，不能当作confirmed。应补充并核实质量证据，同时查明签收与申请时刻；核实后结合三十日窗口再判断，超窗需人工裁量。仅有报告不能保证可退换，也不能输出确定退款金额。",
+      "applicability": {
+        "category_ids": [
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "reported"
+          }
+        ],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "eligibility": "need_verification"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-CUS-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-015",
+      "version": "1.0.0",
+      "question": "2026年7月1日起购买的订单，标准配送满多少免运费？",
+      "paraphrases": [
+        "七月起是满159元免标准配送费吗？",
+        "七月之后折扣前满门槛，但实付不到门槛怎么收？"
+      ],
+      "answer": "购买时刻在2026年7月1日零点及之后的订单，按折扣后实际支付的商品金额判断，达到15900分即159.00元时免标准配送费，恰好达到也免；低于门槛时标准配送费800分即8.00元。门槛金额不含原出库运费，不按商品标价或赠品宣传价计算。测试店仅统一模拟标准配送，不新增地域规则；此前购买的订单不能因之后查询而套用新门槛。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-07-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "free_shipping_threshold_cents": 15900,
+        "standard_shipping_cents": 800
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-016",
+      "version": "1.0.0",
+      "question": "2026年1月至6月购买的订单，在七月后查运费仍按旧门槛吗？",
+      "paraphrases": [
+        "六月买的订单适用199元还是159元门槛？",
+        "购买时的历史配送规则会被查询日期覆盖吗？"
+      ],
+      "answer": "购买时刻在2026年1月1日零点及之后、7月1日零点之前的订单，适用历史运费版本：折扣后实付商品金额达到19900分即199.00元时免标准配送费，恰好达到也免；不足时标准配送费800分即8.00元。门槛不含运费，不按标价计算。后来签收、申请售后或查询，不改变购买时适用的版本；恰好在7月1日零点购买的订单不属于这个旧区间。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": "2026-07-01T00:00:00+08:00",
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "free_shipping_threshold_cents": 19900,
+        "standard_shipping_cents": 800
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-017",
+      "version": "1.0.0",
+      "question": "七月起购买的订单无理由退换，退件费和原出库运费怎么处理？",
+      "paraphrases": [
+        "无理由退货来回运费谁付？",
+        "无理由退货原配送费也退吗？"
+      ],
+      "answer": "无理由退货的退件运费由客户承担，无理由换货的往返运费也由客户承担；无理由退货不退原出库运费。费用承担不代表商品已符合退换条件，还需通用窗口和品类条件。商品退款按冻结实付份额解释，不自动减去退件费，也不把原出库运费从商品份额中重复扣一次。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "no_reason"
+          }
+        ],
+        "effective_from": "2026-07-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "return_shipping_payer": "customer",
+        "outbound_shipping_refundable": false
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-002",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-004",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-018",
+      "version": "1.0.0",
+      "question": "七月起购买的订单，核实的质量退换由谁承担退件费？",
+      "paraphrases": [
+        "质量已经确认，寄回的运费由谁承担？",
+        "质量退件费和原订单运费是一项吗？"
+      ],
+      "answer": "质量问题已经核实为confirmed时，质量退件运费由店铺承担。仅有reported不能按已核实问题直接承诺。退换资格仍需结合通用三十日窗口和品类质量条款，超窗需人工裁量。退件费与原订单出库运费不同，不能因为退件费由店铺承担就推断原运费一定退。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "confirmed"
+          }
+        ],
+        "effective_from": "2026-07-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "return_shipping_payer": "shop"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-003",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-002",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-019",
+      "version": "1.0.0",
+      "question": "七月起购买的订单，质量已核实并退回全部付费商品，原出库运费能退吗？",
+      "paraphrases": [
+        "核实质量问题全单退，实际付过的原运费怎么列？",
+        "原来免运费，全单质量退会额外退8元吗？"
+      ],
+      "answer": "质量问题已核实且有证据确认本次退货覆盖订单全部付费商品单元时，原出库运费可按实际已经支付的金额单列；原订单免运费时此项为零，不能凭标准配送价额外补出800分。全单范围必须有订单和退货范围依据，不能猜测；商品可退条件、关联赠品状态和金额资料仍需共同核查，不能仅凭本条输出确定总退款金额。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "confirmed"
+          },
+          {
+            "field": "full_paid_order_return",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effective_from": "2026-07-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "outbound_shipping_refundable": true
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-005",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-020",
+      "version": "1.0.0",
+      "question": "七月起购买的订单，只退部分有核实质量问题的商品，原出库运费也退吗？",
+      "paraphrases": [
+        "质量退了部分商品，原配送费可退吗？",
+        "不是全单质量退货是否仍退原运费？"
+      ],
+      "answer": "部分质量退货不退原出库运费；原出库运费可退条款要求质量问题已核实且退货覆盖订单全部付费商品单元。质量退件运费由店铺承担与原出库运费是否可退是不同问题，不能混同。全单范围未知时先查明，也不能直接套用可退原运费的结论。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [
+          {
+            "field": "return_reason",
+            "op": "eq",
+            "value": "quality"
+          },
+          {
+            "field": "quality_status",
+            "op": "eq",
+            "value": "confirmed"
+          },
+          {
+            "field": "full_paid_order_return",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "effective_from": "2026-07-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {},
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-005",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-003",
+          "version": "1.1.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-021",
+      "version": "1.0.0",
+      "question": "订单优惠怎样按分分摊，多出的一分钱给哪一行？",
+      "paraphrases": [
+        "优惠分摊遇到小数怎么处理？",
+        "两行余数一样时订单优惠的一分钱怎么分？"
+      ],
+      "answer": "订单优惠采用最大余数法，权重为单价分×数量−商品级优惠分，全部金额用整数分。按权重比例计算理想份额后先向下取整，剩余分按余数从大到小逐一分配；并列时按订单行ID升序，每次一分。最终实付及份额冻结，退款读取冻结单元实付份额，不按退货后的剩余商品重算；资料缺失时不能猜测分摊结果。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "coupon_allocation": "largest_remainder"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-022",
+      "version": "1.0.0",
+      "question": "部分退货后不再满足原优惠门槛，会追扣剩余商品优惠吗？",
+      "paraphrases": [
+        "退一件会重新计算满减并扣钱吗？",
+        "留下的商品不够原满减门槛怎么办？"
+      ],
+      "answer": "本店不对部分退货后留下的商品追扣门槛优惠。退货商品按原冻结实付份额解释，剩余商品保留原冻结优惠，不重算整单优惠，也不再次扣除已分摊优惠。关联赠品是否应退回是另一项规则，不能靠不追扣优惠来忽略赠品要求。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "coupon_clawback": false
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-003",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-023",
+      "version": "1.0.0",
+      "question": "退关联主商品要退赠品吗，赠品没退是否直接按宣传价扣？",
+      "paraphrases": [
+        "赠品不在了还能直接给退款金额吗？",
+        "赠品标价能加进退款金额吗？"
+      ],
+      "answer": "有关联赠品的主商品退货时，应同时退回该赠品；没有关联赠品的商品不额外产生要求。赠品未退或退回状态资料缺失时，需要核查和人工判断，不能自动扣宣传价、标价或名义价值，也不能直接给确定退款金额。赠品实付为零，排除在商品退款外，不能把赠品名义价值加入退款。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "gift_return_required": true,
+        "missing_gift_action": "manual_review"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-024",
+      "version": "1.0.0",
+      "question": "商品退款按标价还是实际支付金额算，会再扣优惠和退件费吗？",
+      "paraphrases": [
+        "为什么不能按原价退？",
+        "单件退款应按哪份支付份额解释？"
+      ],
+      "answer": "商品退款以所选退货商品单元的冻结unit_paid_amounts_cents实付份额之和为依据，使用整数分，排除零实付赠品，不用标价或当前活动价重算。优惠已在冻结份额中体现，不重复扣优惠、不追扣剩余商品门槛优惠，也不自动扣退件费。原出库运费按购买时刻适用的运费规则单列。缺少退货范围、冻结份额、适用规则或赠品状态时，不输出确定金额；完整证据下的解释仍只是预估，不是审批或到账。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "refund_basis": "unit_paid_amounts_cents"
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-025",
+      "version": "1.0.0",
+      "question": "退款预估金额、审批金额和到账金额是同一个意思吗？",
+      "paraphrases": [
+        "给了预估是不是已经退款？",
+        "审批通过或正在处理就代表到账吗？"
+      ],
+      "answer": "三者必须分开：预估是基于证据和政策的解释性计算，不是审批或支付承诺；审批金额要有审批记录，审批通过不等于已到账；到账金额和时间要有settled_cents与settled_at证据，处理中不能声称到账。资料或赠品状态缺失、赠品未退及人工裁量未明确时，不输出确定退款金额。本系统只读，不执行退款或承诺到账期限。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "purchased_at"
+      },
+      "answer_parameters": {
+        "amount_semantics": "estimate_approved_settled_separate"
+      },
+      "evidence_time_bindings": [
+        {
+          "evidence_ref": {
+            "kind": "policy_rule",
+            "id": "RULE-PRG-001",
+            "version": "1.0.0"
+          },
+          "selection_event": "after_sales_applied_at",
+          "effective_from": "2026-01-01T00:00:00+08:00",
+          "effective_until": null
+        }
+      ],
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-GEN-003",
+          "version": "1.0.1"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-026",
+      "version": "1.0.0",
+      "question": "没有退款记录、处理中、失败、已到账和查询失败怎么区分？",
+      "paraphrases": [
+        "查不到记录就是退款失败了吗？",
+        "接口没查成功可以说已经到账吗？"
+      ],
+      "answer": "必须区分这些情况，并按有效查询的observed_at说明证据时点。成功查询但无记录只说明截至该时点没查到退款记录，不推断拒绝或失败；处理中不代表到账；失败按失败记录解释；只有明确到账记录并有settled_at和settled_cents证据时才说明到账时间和金额。接口查询失败意味着无法确认当前状态，不能冒充无记录、业务退款失败或已到账。预估、审批和到账不能相互替代，也不作出期限承诺。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "after_sales_applied_at"
+      },
+      "answer_parameters": {
+        "refund_state_distinction": true
+      },
+      "evidence_time_bindings": [
+        {
+          "evidence_ref": {
+            "kind": "policy_rule",
+            "id": "RULE-REF-002",
+            "version": "1.0.0"
+          },
+          "selection_event": "purchased_at",
+          "effective_from": "2026-01-01T00:00:00+08:00",
+          "effective_until": null
+        }
+      ],
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    },
+    {
+      "id": "FAQ-027",
+      "version": "1.0.0",
+      "question": "刚才问过退款进度，再问现在到账没，能沿用旧结果吗？",
+      "paraphrases": [
+        "不用再查，能否按之前结果说现在到账了？",
+        "刷新接口失败时可以继续说当前还在处理中吗？"
+      ],
+      "answer": "再次询问动态退款进度必须刷新并取得新的有效查询结果，不能沿用旧状态宣布现在已到账或把旧状态当作当前状态。解释时给出新结果的observed_at；确认到账还需settled_at和settled_cents证据。刷新失败只能说明当前状态无法确认，旧结果可以作为带查询时刻的历史事实，不得冒充本次查询成功，也不承诺处理或到账期限。",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": [],
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_until": null,
+        "selection_event": "after_sales_applied_at"
+      },
+      "answer_parameters": {
+        "refresh_required": true
+      },
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ],
+      "review_status": "approved",
+      "lifecycle": "draft"
+    }
+  ]
+}

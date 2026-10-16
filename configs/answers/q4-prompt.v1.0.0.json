@@ -1,0 +1,8 @@
+{
+  "id": "q4-prompt",
+  "version": "1.0.0",
+  "hypothesis": "相对Q0仅加强基础生成约束，不增加审核调用。",
+  "generation": {
+    "prompt_version": "rag-evidence-v2"
+  }
+}

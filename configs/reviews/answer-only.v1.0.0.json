@@ -1,0 +1,12 @@
+{
+  "id": "review-answer-only",
+  "version": "1.0.0",
+  "precheck": true,
+  "postcheck": true,
+  "correction": "answer_only",
+  "max_rounds": 2,
+  "review_tokens": 1200,
+  "repair_tokens": 1200,
+  "timeout_seconds": 30,
+  "prompt_version": "evidence-review-v1"
+}

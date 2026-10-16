@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "window-200",
+  "version": "1.0.0",
+  "hypothesis": "相对window-400仅改变目标长度为200；检验细粒度召回是否抵消条件切散与索引增大。",
+  "chunk": {
+    "strategy": "token-window-v1",
+    "target_tokens": 200,
+    "max_tokens": 600,
+    "overlap_tokens": 60,
+    "parent_max_tokens": 1200,
+    "parent_relation": "bounded-rule-v1",
+    "tokenizer": "tiktoken-0.9.0-cl100k_base-estimate"
+  },
+  "embedding": {
+    "provider": "aliyun",
+    "model": "text-embedding-v4",
+    "dimensions": 1024,
+    "document_encoding": "title-scope-rule-v1",
+    "query_encoding": "raw-v1",
+    "normalization": "provider",
+    "revision": null
+  },
+  "search": "exact_cosine"
+}

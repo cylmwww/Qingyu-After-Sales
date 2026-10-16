@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fixture.schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "is_test_fixture": {
+      "const": true
+    },
+    "fixture_kind": {
+      "enum": [
+        "knowledge_conflict",
+        "prompt_injection",
+        "tool_timeout"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_snapshot_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "operation": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "expected_validation_errors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "schema_version",
+    "is_test_fixture",
+    "fixture_kind",
+    "description",
+    "base_snapshot_ref",
+    "operation",
+    "expected_validation_errors"
+  ],
+  "additionalProperties": false
+}

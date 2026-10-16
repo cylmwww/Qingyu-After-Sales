@@ -1,0 +1,8 @@
+{
+  "id": "q2-parent-related",
+  "version": "1.0.0",
+  "hypothesis": "相对Q0仅补充父片段与精确版本关联条款。",
+  "context": {
+    "strategy": "parent-related"
+  }
+}

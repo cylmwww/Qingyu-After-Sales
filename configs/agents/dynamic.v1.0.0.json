@@ -1,0 +1,6 @@
+{
+  "id": "agent-dynamic",
+  "version": "1.0.0",
+  "strategy": "dynamic",
+  "experiment": true
+}

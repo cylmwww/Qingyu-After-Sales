@@ -1,0 +1,12 @@
+{
+  "id": "loop-v2-bound",
+  "version": "1.2.0",
+  "runtime_version": "agent-loop-v1",
+  "contract_version": "loop-bound-v2",
+  "prompt_version": "loop-bound-v2",
+  "tool_version": "readonly-v1",
+  "context_version": "loop-view-v2",
+  "review_policy": "required-post-v1",
+  "decision_tokens": 1500,
+  "max_tool_actions": 6
+}

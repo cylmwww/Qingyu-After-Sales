@@ -1,0 +1,20 @@
+/local/
+/docs/local/
+/personal/
+
+# 本地环境配置可能包含模型密钥。
+/.env
+/.env.*
+!/.env.example
+!/.env.mock.example
+/.venv/
+**/__pycache__/
+/.pytest_cache/
+/frontend/node_modules/
+/frontend/dist/
+/tokenizer-cache/
+/.zcode/
+/.zcodeignore
+
+# 本地版本记录。
+/docs/changelog.md

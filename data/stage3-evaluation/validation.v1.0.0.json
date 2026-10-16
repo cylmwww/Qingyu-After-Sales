@@ -1,0 +1,482 @@
+{
+  "id": "EVAL-STAGE3-VALIDATION",
+  "version": "1.0.0",
+  "split": "validation",
+  "scope": "retrieval_only_pilot",
+  "review_status": "approved",
+  "notes": [
+    "11个检索政策样本，非设计60例完整业务验证集；由程序对照已审原文，未冒充负责人审核。",
+    "不建独立测试集；不读取测试集；问题族与条件组合隔离由划分理由及校验检查共同约束。",
+    "2026-10-11人工逐例复核：必要证据引用的规则ID/版本与政策原文逐条核对一致；VAL-S3-005的E02由RULE-APP-003更正为RULE-APP-004（本例为质量问题且包装完整，APP-003包装缺失无理由条款条件不成立，质量例外应引品类质量条款），其余10例标注无需修改。签署人与日期见local/第八阶段实施记录.md。"
+  ],
+  "cases": [
+    {
+      "id": "VAL-S3-001",
+      "family_id": "FAM-VAL-DISCOUNT-BASIS",
+      "condition_combination_id": "FAM-VAL-DISCOUNT-BASIS-001",
+      "description": "优惠后实付门槛与零赠品",
+      "split_rationale": "不是DEV历史运费退款问题，关注新版本门槛的金额基准与零赠品。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-001-U1",
+          "role": "user",
+          "text": "商品标价超过159元，但优惠后商品实付仅158元，另有零元赠品；七月买的单按哪个金额判断免配送费？ 明确purchased_at=2026-08-02T12:00:00+08:00。",
+          "facts": {
+            "purchased_at": "2026-08-02T12:00:00+08:00",
+            "merchandise_paid_cents": 15800,
+            "gift_paid_cents": 0,
+            "catalog_price_above_threshold": true
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-SHIP-001",
+              "version": "1.1.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-001-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-002",
+      "family_id": "FAM-VAL-COUPON-TIE",
+      "condition_combination_id": "FAM-VAL-COUPON-TIE-001",
+      "description": "优惠余分并列顺序",
+      "split_rationale": "开发单元退款舍入不同；验证订单优惠分摊并列顺序与零赠品权重。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-002-U1",
+          "role": "user",
+          "text": "订单优惠分摊到最后还差一分钱，两个订单行的小数余数一样；能随便选一行多分一分吗？零元赠品能增加权重吗？",
+          "facts": {
+            "allocation_remainder_tie": true,
+            "unallocated_cents": 1,
+            "gift_paid_cents": 0
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-PRO-001",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-002-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-003",
+      "family_id": "FAM-VAL-NO-GIFT-LINK",
+      "condition_combination_id": "FAM-VAL-NO-GIFT-LINK-001",
+      "description": "无关联赠品免要求",
+      "split_rationale": "开发部分退货有相关赠品；本例明确无关联，验证不额外产生赠品义务。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-003-U1",
+          "role": "user",
+          "text": "部分退货使剩余金额不达优惠门槛，但这件商品没有关联赠品；还需要寄回别的赠品，或追回剩余商品优惠吗？",
+          "facts": {
+            "related_gift_present": false,
+            "remaining_below_coupon_threshold": true,
+            "return_scope": "partial"
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-PRO-002",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-003-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-PRO-003",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-003-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-004",
+      "family_id": "FAM-VAL-FREE-OUTBOUND",
+      "condition_combination_id": "FAM-VAL-FREE-OUTBOUND-001",
+      "description": "质量全退原运费为零",
+      "split_rationale": "开发质量运费案例不含免配送全退组合；不验证业务金额计算。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-004-U1",
+          "role": "user",
+          "text": "已核实质量问题并退回全部付费商品，买时免配送费、实际原运费为零；能按标准8元把原运费加入退款吗？ 明确purchased_at=2026-08-02T12:00:00+08:00。",
+          "facts": {
+            "purchased_at": "2026-08-02T12:00:00+08:00",
+            "return_reason": "quality",
+            "quality_status": "confirmed",
+            "full_paid_order_return": true,
+            "outbound_shipping_paid_cents": 0
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-SHIP-005",
+              "version": "1.1.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-004-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-REF-001",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-004-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-005",
+      "family_id": "FAM-VAL-QUALITY-UNVERIFIED",
+      "condition_combination_id": "FAM-VAL-QUALITY-UNVERIFIED-001",
+      "description": "服饰质量未核实与超窗",
+      "split_rationale": "开发质量例外为已核实窗口内；本例同时未核实和超质量窗。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-005-U1",
+          "role": "user",
+          "text": "衣服吊牌还在且包装齐全，签收已三十一天，只是自己报告有质量问题还没核实；这些完整状态能直接证明质量退换可受理吗？",
+          "facts": {
+            "category_id": "apparel_footwear",
+            "quality_status": "reported",
+            "days_since_signed": 31,
+            "packaging_complete": true,
+            "tag_attached": true
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-GEN-002",
+              "version": "1.0.1"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-005-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-APP-004",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-005-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-006",
+      "family_id": "FAM-VAL-CUSTOM-NO-TIME",
+      "condition_combination_id": "FAM-VAL-CUSTOM-NO-TIME-001",
+      "description": "定制质量核实但时间未知",
+      "split_rationale": "开发定制质量有窗口事实；本例验证质量核实与时间缺失的组合。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-006-U1",
+          "role": "user",
+          "text": "定制商品的问题已核实为质量问题，但没有签收与申请时刻；可不管时间直接保证符合质量退换吗？",
+          "facts": {
+            "category_id": "customized",
+            "quality_status": "confirmed",
+            "signed_at_known": false,
+            "applied_at_known": false
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-GEN-002",
+              "version": "1.0.1"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-006-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-CUS-002",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-006-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-007",
+      "family_id": "FAM-VAL-ACTIVATION-UNKNOWN",
+      "condition_combination_id": "FAM-VAL-ACTIVATION-UNKNOWN-001",
+      "description": "未知激活与全配件",
+      "split_rationale": "开发数码案例为已知激活或未激活；本例明确未知激活。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-007-U1",
+          "role": "user",
+          "text": "数码配件所有附件都在、商品完好、已经拆封，激活状态查不到；仅凭这些可以判为未激活并承诺无理由可退吗？",
+          "facts": {
+            "category_id": "digital_accessories",
+            "opened": true,
+            "activated": null,
+            "product_intact": true,
+            "accessories_complete": true
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-DIG-001",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-007-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-GEN-001",
+              "version": "1.0.1"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-007-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-008",
+      "family_id": "FAM-VAL-QUALITY-ACCESSORY-EXCEPTION",
+      "condition_combination_id": "FAM-VAL-QUALITY-ACCESSORY-EXCEPTION-001",
+      "description": "质量配件缺失例外",
+      "split_rationale": "开发附件缺失为无理由；质量案例强调激活，本例组合未激活配件缺失质量。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-008-U1",
+          "role": "user",
+          "text": "耳机未激活但附件缺失；质量问题已核实且有证据在三十日窗口内，还要按无理由配件缺失规则交人工吗？",
+          "facts": {
+            "category_id": "digital_accessories",
+            "activated": false,
+            "accessories_complete": false,
+            "quality_status": "confirmed",
+            "within_quality_window": true
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-DIG-003",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-008-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-DIG-004",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-008-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-009",
+      "family_id": "FAM-VAL-SETTLED-CONTRADICTORY",
+      "condition_combination_id": "FAM-VAL-SETTLED-CONTRADICTORY-001",
+      "description": "状态到账但字段矛盾",
+      "split_rationale": "开发进度为一致处理或到账；本例状态与字段矛盾，查询工具尚未实现。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-009-U1",
+          "role": "user",
+          "text": "记录状态写已到账，审批金额存在，却缺少实际到账时间和到账金额；能用审批金额替它补上吗？",
+          "facts": {
+            "refund_state": "settled",
+            "approved_amount_present": true,
+            "settled_cents_known": false,
+            "settled_at_known": false
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-PRG-001",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-009-U1"
+        },
+        {
+          "id": "E02",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-REF-002",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-009-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-010",
+      "family_id": "FAM-VAL-OBSERVATION-SCOPE",
+      "condition_combination_id": "FAM-VAL-OBSERVATION-SCOPE-001",
+      "description": "无记录不是拒绝",
+      "split_rationale": "开发超时与处理中不同；本例查询成功无记录的否定推断边界。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-010-U1",
+          "role": "user",
+          "text": "一次有效查询没有退款记录，附了截至查询的时间；这能解释为审批拒绝或退款失败吗？",
+          "facts": {
+            "query_status": "success",
+            "refund_record_present": false,
+            "observed_at_present": true
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-PRG-001",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-010-U1"
+        }
+      ]
+    },
+    {
+      "id": "VAL-S3-011",
+      "family_id": "FAM-VAL-UNKNOWN-UNIT-BASIS",
+      "condition_combination_id": "FAM-VAL-UNKNOWN-UNIT-BASIS-001",
+      "description": "行平均价不能替代单元",
+      "split_rationale": "开发舍入有冻结单元份额；本例缺份额只问依据，不计算。",
+      "review_status": "approved",
+      "turns": [
+        {
+          "id": "VAL-S3-011-U1",
+          "role": "user",
+          "text": "有订单行平均实付，但所选商品单元冻结份额缺失；能直接用行平均价推定这个单元的退款金额吗？",
+          "facts": {
+            "line_average_paid_present": true,
+            "unit_paid_amounts_present": false
+          }
+        }
+      ],
+      "required_evidence": [
+        {
+          "id": "E01",
+          "any_of": [
+            {
+              "kind": "policy_rule",
+              "id": "RULE-REF-001",
+              "version": "1.0.0"
+            }
+          ],
+          "visibility": "assistant",
+          "available_from_turn_id": "VAL-S3-011-U1"
+        }
+      ]
+    }
+  ]
+}

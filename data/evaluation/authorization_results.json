@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.1.0",
+  "id": "AUTHORIZATION-DATASET-001",
+  "version": "1.0.0",
+  "is_static_annotation": true,
+  "items": [
+    {
+      "id": "AUTH-DEV-028",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "requested_order_id": "ORD-014",
+      "status": "no_permission",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "data": null,
+      "error_code": "ORDER_ACCESS_DENIED",
+      "is_static_annotation": true
+    }
+  ]
+}

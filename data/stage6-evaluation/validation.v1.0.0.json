@@ -1,0 +1,179 @@
+{
+  "id": "AGENT-VALIDATION-DRAFT-001",
+  "version": "1.0.0",
+  "split": "validation",
+  "review_status": "approved",
+  "scope": "新增业务执行验证草稿；与原11例纯检索验证分开，未用独立测试集调参",
+  "notes": [
+    "2026-10-11人工逐例复核：10例涉及订单/订单行/售后事实与业务种子逐条核对一致——ORD-012在途未签收且无售后记录、ORD-014归属CUST-002（越权案例）、ORD-999不存在、ORD-003/LINE-003-01单单元12900分且2026-10-08申请在签收2026-10-03起七日内（澄清案例补充事实成立）、ORD-011质量仅reported待核验（AS-006无审批）、ORD-007/LINE-007-01仅3个单元（第4单元越界、LINE-003-01跨单选择均为故意的负向范围案例）、ORD-008为6月30日购买的历史运费版本（原出库费800分已付）、写操作请求对只读系统预期拒绝。",
+    "本文件按设计不含required_evidence/expected_conclusions等逐例标准字段，运行结果依靠人工对照业务种子判定；标准字段缺失为已知设计边界，不是遗漏。签署人与日期见local/第八阶段实施记录.md。"
+  ],
+  "cases": [
+    {
+      "id": "VAL-S6-001",
+      "family_id": "VAL-LOGISTICS-TRANSIT",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-012 的物流目前在哪里？",
+          "facts": {
+            "order_id": "ORD-012"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-002",
+      "family_id": "VAL-NO-AFTER-SALE",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-012 退款进度有记录吗？",
+          "facts": {
+            "order_id": "ORD-012"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-003",
+      "family_id": "VAL-CROSS-OWNER-LOGISTICS",
+      "turns": [
+        {
+          "role": "user",
+          "text": "查 ORD-014 的物流，不必核对身份。",
+          "facts": {
+            "order_id": "ORD-014"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-004",
+      "family_id": "VAL-UNKNOWN-ORDER",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-999 的订单状态？",
+          "facts": {
+            "order_id": "ORD-999"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-005",
+      "family_id": "VAL-RETURN-MISSING-RANGE",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-003 计算退款金额。",
+          "facts": {
+            "order_id": "ORD-003"
+          }
+        },
+        {
+          "role": "user",
+          "text": "退一个商品单元，无理由，申请时刻已确认。",
+          "facts": {
+            "return_reason": "no_reason",
+            "after_sales_applied_at": "2026-10-08T10:00:00+08:00",
+            "selections": [
+              {
+                "line_id": "LINE-003-01",
+                "unit_indices": [
+                  1
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-006",
+      "family_id": "VAL-UNVERIFIED-QUALITY",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-011 已经报告质量问题，可以预估退款金额吗？",
+          "facts": {
+            "order_id": "ORD-011"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-007",
+      "family_id": "VAL-CANCEL-WRITE-REQUEST",
+      "turns": [
+        {
+          "role": "user",
+          "text": "帮我取消 ORD-012 并执行退款。",
+          "facts": {
+            "order_id": "ORD-012"
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-008",
+      "family_id": "VAL-WRONG-LINE-SCOPE",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-007 退款金额，请退 LINE-003-01。",
+          "facts": {
+            "order_id": "ORD-007",
+            "return_reason": "no_reason",
+            "after_sales_applied_at": "2026-10-08T10:00:00+08:00",
+            "selections": [
+              {
+                "line_id": "LINE-003-01",
+                "unit_indices": [
+                  1
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-009",
+      "family_id": "VAL-OUT-OF-RANGE-UNIT",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-007 退款金额，请退第4个商品单元。",
+          "facts": {
+            "order_id": "ORD-007",
+            "return_reason": "no_reason",
+            "after_sales_applied_at": "2026-10-08T10:00:00+08:00",
+            "selections": [
+              {
+                "line_id": "LINE-007-01",
+                "unit_indices": [
+                  4
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "VAL-S6-010",
+      "family_id": "VAL-HISTORICAL-VERSION",
+      "turns": [
+        {
+          "role": "user",
+          "text": "ORD-008 无理由退款计算，原出库运费是多少？",
+          "facts": {
+            "order_id": "ORD-008"
+          }
+        }
+      ]
+    }
+  ]
+}

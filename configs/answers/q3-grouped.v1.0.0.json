@@ -1,0 +1,9 @@
+{
+  "id": "q3-grouped",
+  "version": "1.0.0",
+  "hypothesis": "相对Q2仅按种子及关联条款分组排列，选择优先级和预算不变。",
+  "context": {
+    "strategy": "parent-related",
+    "organization": "anchor-grouped"
+  }
+}

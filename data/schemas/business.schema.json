@@ -1,0 +1,800 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "business.schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "schema_version": {
+      "enum": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    },
+    "review_status": {
+      "$ref": "common.schema.json#/$defs/review_status"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "mock_business_seed"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "shop": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "currency": {
+          "const": "CNY"
+        },
+        "timezone": {
+          "const": "Asia/Shanghai"
+        },
+        "category_ids": {
+          "$ref": "common.schema.json#/$defs/categories"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "name",
+        "currency",
+        "timezone",
+        "category_ids"
+      ],
+      "additionalProperties": false
+    },
+    "customers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/customer"
+      },
+      "minItems": 1
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/product"
+      },
+      "minItems": 1
+    },
+    "campaigns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/campaign"
+      },
+      "minItems": 1
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/order"
+      },
+      "minItems": 1
+    },
+    "order_lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/order_line"
+      },
+      "minItems": 1
+    },
+    "payments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/payment"
+      },
+      "minItems": 1
+    },
+    "logistics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/logistics"
+      },
+      "minItems": 1
+    },
+    "after_sales": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/after_sale"
+      },
+      "minItems": 1
+    },
+    "refunds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/refund"
+      },
+      "minItems": 1
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/snapshot"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "schema_version",
+    "review_status",
+    "source",
+    "shop",
+    "customers",
+    "products",
+    "campaigns",
+    "orders",
+    "order_lines",
+    "payments",
+    "logistics",
+    "after_sales",
+    "refunds",
+    "snapshots"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "customer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "shop_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "shop_id",
+        "display_name"
+      ],
+      "additionalProperties": false
+    },
+    "product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "shop_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category_id": {
+          "$ref": "common.schema.json#/$defs/category"
+        },
+        "is_gift": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "shop_id",
+        "name",
+        "category_id",
+        "is_gift"
+      ],
+      "additionalProperties": false
+    },
+    "campaign": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "shop_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "order_coupon",
+            "gift_with_qualifying_line"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicability": {
+          "type": "object",
+          "properties": {
+            "category_ids": {
+              "$ref": "common.schema.json#/$defs/categories"
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/condition"
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "category_ids",
+            "conditions"
+          ],
+          "additionalProperties": false
+        },
+        "effective_from": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "effective_until": {
+          "$ref": "common.schema.json#/$defs/nullable_timestamp"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "shop_id",
+        "kind",
+        "title",
+        "applicability",
+        "effective_from",
+        "effective_until",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "shop_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "customer_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "purchased_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "status": {
+          "enum": [
+            "delivered",
+            "in_transit"
+          ]
+        },
+        "currency": {
+          "const": "CNY"
+        },
+        "line_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "payment_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "merchandise_gross_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "item_discount_total_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "coupon_total_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "merchandise_paid_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "outbound_shipping_paid_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "total_paid_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "observed_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "shop_id",
+        "customer_id",
+        "purchased_at",
+        "status",
+        "currency",
+        "line_ids",
+        "payment_id",
+        "campaign_ids",
+        "merchandise_gross_cents",
+        "item_discount_total_cents",
+        "coupon_total_cents",
+        "merchandise_paid_cents",
+        "outbound_shipping_paid_cents",
+        "total_paid_cents",
+        "observed_at",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "order_line": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "order_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "product_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unit_price_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "item_discount_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "coupon_allocated_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "paid_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "unit_paid_amounts_cents": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/money"
+          },
+          "minItems": 1
+        },
+        "conditions": {
+          "type": "object",
+          "properties": {
+            "tags_intact": {
+              "type": "boolean"
+            },
+            "product_intact": {
+              "type": "boolean"
+            },
+            "used_outdoors": {
+              "type": "boolean"
+            },
+            "packaging_intact": {
+              "type": "boolean"
+            },
+            "opened": {
+              "type": "boolean"
+            },
+            "activated": {
+              "type": "boolean"
+            },
+            "accessories_complete": {
+              "type": "boolean"
+            },
+            "production_started": {
+              "type": "boolean"
+            },
+            "quality_status": {
+              "enum": [
+                "none",
+                "reported",
+                "confirmed"
+              ]
+            },
+            "gift_returned": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "product_intact",
+            "quality_status"
+          ],
+          "additionalProperties": false
+        },
+        "gift_for_line_id": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "order_id",
+        "product_id",
+        "quantity",
+        "unit_price_cents",
+        "item_discount_cents",
+        "coupon_allocated_cents",
+        "paid_cents",
+        "unit_paid_amounts_cents",
+        "conditions",
+        "gift_for_line_id",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "order_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "status": {
+          "const": "paid"
+        },
+        "paid_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "amount_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "currency": {
+          "const": "CNY"
+        },
+        "observed_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "order_id",
+        "status",
+        "paid_at",
+        "amount_cents",
+        "currency",
+        "observed_at",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "logistics": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "order_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "signed",
+            "in_transit"
+          ]
+        },
+        "shipped_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "signed_at": {
+          "$ref": "common.schema.json#/$defs/nullable_timestamp"
+        },
+        "observed_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "order_id",
+        "status",
+        "shipped_at",
+        "signed_at",
+        "observed_at",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "after_sale": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "order_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "return_reason": {
+          "enum": [
+            "no_reason",
+            "quality"
+          ]
+        },
+        "quality_status": {
+          "enum": [
+            "none",
+            "reported",
+            "confirmed"
+          ]
+        },
+        "selections": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/selection"
+          },
+          "minItems": 1
+        },
+        "gift_returned_line_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "minItems": 0
+        },
+        "applied_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "status": {
+          "enum": [
+            "pending_review",
+            "pending_verification",
+            "refund_processing",
+            "refund_completed"
+          ]
+        },
+        "requested_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "approved_cents": {
+          "$ref": "common.schema.json#/$defs/nullable_money"
+        },
+        "approved_merchandise_cents": {
+          "$ref": "common.schema.json#/$defs/nullable_money"
+        },
+        "approved_outbound_shipping_cents": {
+          "$ref": "common.schema.json#/$defs/nullable_money"
+        },
+        "approved_at": {
+          "$ref": "common.schema.json#/$defs/nullable_timestamp"
+        },
+        "refund_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "minItems": 0
+        },
+        "observed_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "order_id",
+        "return_reason",
+        "quality_status",
+        "selections",
+        "gift_returned_line_ids",
+        "applied_at",
+        "status",
+        "requested_cents",
+        "approved_cents",
+        "approved_merchandise_cents",
+        "approved_outbound_shipping_cents",
+        "approved_at",
+        "refund_ids",
+        "observed_at",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "refund": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "after_sale_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "order_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "status": {
+          "enum": [
+            "processing",
+            "settled",
+            "failed"
+          ]
+        },
+        "initiated_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "approved_cents": {
+          "$ref": "common.schema.json#/$defs/money"
+        },
+        "settled_cents": {
+          "$ref": "common.schema.json#/$defs/nullable_money"
+        },
+        "settled_at": {
+          "$ref": "common.schema.json#/$defs/nullable_timestamp"
+        },
+        "observed_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "after_sale_id",
+        "order_id",
+        "status",
+        "initiated_at",
+        "approved_cents",
+        "settled_cents",
+        "settled_at",
+        "observed_at",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "captured_at": {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        "shop_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "knowledge_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "record_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "captured_at",
+        "shop_id",
+        "knowledge_version",
+        "record_refs"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "agent-dynamic",
+  "version": "1.1.0",
+  "strategy": "dynamic",
+  "experiment": true,
+  "context_items": 20
+}

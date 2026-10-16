@@ -1,0 +1,6 @@
+{
+  "id": "agent-auto",
+  "version": "1.0.0",
+  "strategy": "auto",
+  "experiment": false
+}

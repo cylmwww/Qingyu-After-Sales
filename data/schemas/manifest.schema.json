@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "manifest.schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "schema_version": {
+      "enum": [
+        "1.1.0",
+        "1.1.1"
+      ]
+    },
+    "stage": {
+      "const": 1
+    },
+    "shop_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "knowledge_version": {
+      "const": "KNOWLEDGE-DRAFT-002"
+    },
+    "review_status": {
+      "$ref": "common.schema.json#/$defs/review_status"
+    },
+    "lifecycle": {
+      "const": "draft"
+    },
+    "files": {
+      "type": "object",
+      "properties": {
+        "policies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "faq": {
+          "type": "string",
+          "minLength": 1
+        },
+        "business": {
+          "type": "string",
+          "minLength": 1
+        },
+        "development": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fixtures": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "system_constraints": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authorization_results": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "policies",
+        "faq",
+        "business",
+        "development",
+        "fixtures",
+        "system_constraints",
+        "authorization_results"
+      ],
+      "additionalProperties": false
+    },
+    "knowledge_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/ref"
+      },
+      "minItems": 1
+    },
+    "snapshot_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/ref"
+      },
+      "minItems": 1
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "category_ids": {
+          "$ref": "common.schema.json#/$defs/categories"
+        },
+        "read_only": {
+          "const": true
+        },
+        "model_api_calls": {
+          "const": false
+        },
+        "validation_set_created": {
+          "const": false
+        },
+        "test_set_created": {
+          "const": false
+        }
+      },
+      "required": [
+        "category_ids",
+        "read_only",
+        "model_api_calls",
+        "validation_set_created",
+        "test_set_created"
+      ],
+      "additionalProperties": false
+    },
+    "review_record": {
+      "type": "object",
+      "properties": {
+        "reviewer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_on": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "source": {
+          "const": "current_chat_user_confirmation"
+        },
+        "authorization": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "const": "stage1_data_knowledge_development"
+        },
+        "approved_content_version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "knowledge_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "reviewer",
+        "reviewed_on",
+        "source",
+        "authorization",
+        "scope",
+        "approved_content_version",
+        "knowledge_version"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "schema_version",
+    "stage",
+    "shop_id",
+    "knowledge_version",
+    "review_status",
+    "lifecycle",
+    "files",
+    "knowledge_refs",
+    "snapshot_refs",
+    "scope"
+  ],
+  "additionalProperties": false
+}

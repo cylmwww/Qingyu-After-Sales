@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "stage2-baseline",
+  "version": "1.0.0",
+  "hypothesis": "保留第二阶段完整短条款；作为固定对照。",
+  "chunk": {
+    "strategy": "rule-v1",
+    "target_tokens": 400,
+    "max_tokens": 600,
+    "overlap_tokens": 60,
+    "parent_max_tokens": 1200,
+    "parent_relation": "bounded-rule-v1",
+    "tokenizer": "tiktoken-0.9.0-cl100k_base-estimate"
+  },
+  "embedding": {
+    "provider": "aliyun",
+    "model": "text-embedding-v4",
+    "dimensions": 1024,
+    "document_encoding": "title-scope-rule-v1",
+    "query_encoding": "raw-v1",
+    "normalization": "provider",
+    "revision": null
+  },
+  "search": "exact_cosine"
+}

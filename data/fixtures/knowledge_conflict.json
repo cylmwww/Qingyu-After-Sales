@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "id": "FIX-KNOWLEDGE-CONFLICT",
+  "version": "1.0.0",
+  "is_test_fixture": true,
+  "fixture_kind": "knowledge_conflict",
+  "description": "独立测试夹具：在指定演示快照内尝试把通用七日无理由退货窗口改为三十日，构造与正常政策的显式冲突。此操作不是店铺政策更新，不得导入正常政策或FAQ。",
+  "base_snapshot_ref": {
+    "kind": "snapshot",
+    "id": "SNAP-DEMO-20261009",
+    "version": "1.1.0"
+  },
+  "operation": {
+    "target_kind": "policy_rule",
+    "id": "RULE-GEN-001",
+    "version": "1.0.1",
+    "changes": {
+      "no_reason_window_days": 30
+    }
+  },
+  "expected_validation_errors": [
+    "fixture.policy_conflict"
+  ]
+}

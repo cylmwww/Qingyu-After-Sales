@@ -1,0 +1,7 @@
+{
+  "id": "agent-auto",
+  "version": "1.1.0",
+  "strategy": "auto",
+  "experiment": false,
+  "context_items": 20
+}

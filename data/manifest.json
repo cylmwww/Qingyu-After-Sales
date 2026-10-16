@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.1.1",
+  "id": "STAGE1-DATASET-001",
+  "version": "1.1.2",
+  "stage": 1,
+  "shop_id": "SHOP-DEMO-001",
+  "knowledge_version": "KNOWLEDGE-DRAFT-002",
+  "review_status": "approved",
+  "lifecycle": "draft",
+  "files": {
+    "policies": [
+      "data/knowledge/policies/apparel.v1.0.0.md",
+      "data/knowledge/policies/custom.v1.0.0.md",
+      "data/knowledge/policies/digital.v1.0.0.md",
+      "data/knowledge/policies/general.v1.0.1.md",
+      "data/knowledge/policies/progress.v1.0.0.md",
+      "data/knowledge/policies/promotion.v1.0.0.md",
+      "data/knowledge/policies/refund.v1.0.0.md",
+      "data/knowledge/policies/shipping.v1.0.0.md",
+      "data/knowledge/policies/shipping.v1.1.0.md"
+    ],
+    "faq": "data/knowledge/faq.json",
+    "business": "data/business/seed.json",
+    "development": "data/evaluation/development.json",
+    "fixtures": [
+      "data/fixtures/knowledge_conflict.json",
+      "data/fixtures/prompt_injection.json",
+      "data/fixtures/tool_timeout.json"
+    ],
+    "system_constraints": "data/system/constraints.json",
+    "authorization_results": "data/evaluation/authorization_results.json"
+  },
+  "knowledge_refs": [
+    {
+      "kind": "policy",
+      "id": "POL-APPAREL",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-CUSTOM",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-DIGITAL",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-GENERAL",
+      "version": "1.0.1"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-PROGRESS",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-PROMOTION",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-REFUND",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-SHIPPING",
+      "version": "1.0.0"
+    },
+    {
+      "kind": "policy",
+      "id": "POL-SHIPPING",
+      "version": "1.1.0"
+    }
+  ],
+  "snapshot_refs": [
+    {
+      "kind": "snapshot",
+      "id": "SNAP-DEMO-20261009",
+      "version": "1.1.0"
+    },
+    {
+      "kind": "snapshot",
+      "id": "SNAP-DEMO-20261009-REFRESH",
+      "version": "1.1.0"
+    }
+  ],
+  "scope": {
+    "category_ids": [
+      "apparel_footwear",
+      "digital_accessories",
+      "customized"
+    ],
+    "read_only": true,
+    "model_api_calls": false,
+    "validation_set_created": false,
+    "test_set_created": false
+  },
+  "review_record": {
+    "reviewer": "用户（项目负责人）",
+    "reviewed_on": "2026-10-09",
+    "source": "current_chat_user_confirmation",
+    "authorization": "审核通过，修改一下状态",
+    "scope": "stage1_data_knowledge_development",
+    "approved_content_version": "1.1.1",
+    "knowledge_version": "KNOWLEDGE-DRAFT-002"
+  }
+}

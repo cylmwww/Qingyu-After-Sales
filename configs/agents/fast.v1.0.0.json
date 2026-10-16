@@ -1,0 +1,6 @@
+{
+  "id": "agent-fast",
+  "version": "1.0.0",
+  "strategy": "fast",
+  "experiment": true
+}

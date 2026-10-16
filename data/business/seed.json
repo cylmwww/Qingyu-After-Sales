@@ -1,0 +1,3083 @@
+{
+  "schema_version": "1.1.1",
+  "id": "BUS-DATASET-001",
+  "version": "1.1.0",
+  "review_status": "approved",
+  "source": {
+    "kind": "mock_business_seed",
+    "description": "全部记录均为虚构；不包含真实客户信息，也不代表业务服务返回结果。"
+  },
+  "shop": {
+    "id": "SHOP-DEMO-001",
+    "version": "1.0.0",
+    "name": "青屿示例店",
+    "currency": "CNY",
+    "timezone": "Asia/Shanghai",
+    "category_ids": [
+      "apparel_footwear",
+      "digital_accessories",
+      "customized"
+    ]
+  },
+  "customers": [
+    {
+      "id": "CUST-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "display_name": "模拟客户甲"
+    },
+    {
+      "id": "CUST-002",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "display_name": "模拟客户乙"
+    }
+  ],
+  "products": [
+    {
+      "id": "PROD-APP-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿帆布鞋",
+      "category_id": "apparel_footwear",
+      "is_gift": false
+    },
+    {
+      "id": "PROD-APP-002",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿轻薄外套",
+      "category_id": "apparel_footwear",
+      "is_gift": false
+    },
+    {
+      "id": "PROD-DIG-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿蓝牙耳机",
+      "category_id": "digital_accessories",
+      "is_gift": false
+    },
+    {
+      "id": "PROD-DIG-002",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿手机壳",
+      "category_id": "digital_accessories",
+      "is_gift": false
+    },
+    {
+      "id": "PROD-DIG-003",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿充电器",
+      "category_id": "digital_accessories",
+      "is_gift": false
+    },
+    {
+      "id": "PROD-CUS-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿刻字杯",
+      "category_id": "customized",
+      "is_gift": false
+    },
+    {
+      "id": "PROD-GIFT-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "name": "青屿赠品擦拭布",
+      "category_id": "digital_accessories",
+      "is_gift": true
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "CAMPAIGN-COUPON-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "kind": "order_coupon",
+      "title": "模拟订单优惠",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear",
+          "digital_accessories",
+          "customized"
+        ],
+        "conditions": []
+      },
+      "effective_from": "2026-01-01T00:00:00+08:00",
+      "effective_until": null,
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "CAMPAIGN-GIFT-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "kind": "gift_with_qualifying_line",
+      "title": "模拟外套随单赠品",
+      "applicability": {
+        "category_ids": [
+          "apparel_footwear"
+        ],
+        "conditions": [
+          {
+            "field": "product_id",
+            "op": "eq",
+            "value": "PROD-APP-002"
+          }
+        ]
+      },
+      "effective_from": "2026-01-01T00:00:00+08:00",
+      "effective_until": null,
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-003",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-001",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-001-01"
+      ],
+      "payment_id": "PAY-001",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 29900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 29900,
+      "outbound_shipping_paid_cents": 0,
+      "total_paid_cents": 29900,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-002",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-002-01"
+      ],
+      "payment_id": "PAY-002",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 29900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 29900,
+      "outbound_shipping_paid_cents": 0,
+      "total_paid_cents": 29900,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-003",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-003-01"
+      ],
+      "payment_id": "PAY-003",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 12900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 12900,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 13700,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-004",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-004-01"
+      ],
+      "payment_id": "PAY-004",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 19900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 19900,
+      "outbound_shipping_paid_cents": 0,
+      "total_paid_cents": 19900,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-005",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-005-01"
+      ],
+      "payment_id": "PAY-005",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 5990,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 5990,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 6790,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-006",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-006-01",
+        "LINE-006-02",
+        "LINE-006-03"
+      ],
+      "payment_id": "PAY-006",
+      "campaign_ids": [
+        "CAMPAIGN-COUPON-001",
+        "CAMPAIGN-GIFT-001"
+      ],
+      "merchandise_gross_cents": 27800,
+      "item_discount_total_cents": 2000,
+      "coupon_total_cents": 3000,
+      "merchandise_paid_cents": 22800,
+      "outbound_shipping_paid_cents": 0,
+      "total_paid_cents": 22800,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-007",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-007-01"
+      ],
+      "payment_id": "PAY-007",
+      "campaign_ids": [
+        "CAMPAIGN-COUPON-001"
+      ],
+      "merchandise_gross_cents": 9999,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 1000,
+      "merchandise_paid_cents": 8999,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 9799,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-008",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-06-30T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-008-01"
+      ],
+      "payment_id": "PAY-008",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 17900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 17900,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 18700,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-009",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-07-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-009-01"
+      ],
+      "payment_id": "PAY-009",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 17900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 17900,
+      "outbound_shipping_paid_cents": 0,
+      "total_paid_cents": 17900,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-010",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-010-01"
+      ],
+      "payment_id": "PAY-010",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 19900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 19900,
+      "outbound_shipping_paid_cents": 0,
+      "total_paid_cents": 19900,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-011",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-011-01"
+      ],
+      "payment_id": "PAY-011",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 5990,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 5990,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 6790,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-012",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-08T10:00:00+08:00",
+      "status": "in_transit",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-012-01"
+      ],
+      "payment_id": "PAY-012",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 7900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 7900,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 8700,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-013",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-001",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-013-01"
+      ],
+      "payment_id": "PAY-013",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 5990,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 5990,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 6790,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "ORD-014",
+      "version": "1.0.0",
+      "shop_id": "SHOP-DEMO-001",
+      "customer_id": "CUST-002",
+      "purchased_at": "2026-10-01T10:00:00+08:00",
+      "status": "delivered",
+      "currency": "CNY",
+      "line_ids": [
+        "LINE-014-01"
+      ],
+      "payment_id": "PAY-014",
+      "campaign_ids": [],
+      "merchandise_gross_cents": 5900,
+      "item_discount_total_cents": 0,
+      "coupon_total_cents": 0,
+      "merchandise_paid_cents": 5900,
+      "outbound_shipping_paid_cents": 800,
+      "total_paid_cents": 6700,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "policy_rule",
+          "id": "RULE-SHIP-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "order_lines": [
+    {
+      "id": "LINE-001-01",
+      "version": "1.0.0",
+      "order_id": "ORD-001",
+      "product_id": "PROD-APP-001",
+      "quantity": 1,
+      "unit_price_cents": 29900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 29900,
+      "unit_paid_amounts_cents": [
+        29900
+      ],
+      "conditions": {
+        "tags_intact": true,
+        "product_intact": true,
+        "used_outdoors": false,
+        "packaging_intact": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-APP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-002-01",
+      "version": "1.0.0",
+      "order_id": "ORD-002",
+      "product_id": "PROD-APP-001",
+      "quantity": 1,
+      "unit_price_cents": 29900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 29900,
+      "unit_paid_amounts_cents": [
+        29900
+      ],
+      "conditions": {
+        "tags_intact": true,
+        "product_intact": true,
+        "used_outdoors": false,
+        "packaging_intact": false,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-APP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-003-01",
+      "version": "1.0.0",
+      "order_id": "ORD-003",
+      "product_id": "PROD-DIG-001",
+      "quantity": 1,
+      "unit_price_cents": 12900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 12900,
+      "unit_paid_amounts_cents": [
+        12900
+      ],
+      "conditions": {
+        "opened": true,
+        "activated": false,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-DIG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-004-01",
+      "version": "1.0.0",
+      "order_id": "ORD-004",
+      "product_id": "PROD-DIG-001",
+      "quantity": 1,
+      "unit_price_cents": 19900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 19900,
+      "unit_paid_amounts_cents": [
+        19900
+      ],
+      "conditions": {
+        "opened": true,
+        "activated": true,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-DIG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-005-01",
+      "version": "1.0.0",
+      "order_id": "ORD-005",
+      "product_id": "PROD-CUS-001",
+      "quantity": 1,
+      "unit_price_cents": 5990,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 5990,
+      "unit_paid_amounts_cents": [
+        5990
+      ],
+      "conditions": {
+        "production_started": true,
+        "product_intact": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-006-01",
+      "version": "1.0.0",
+      "order_id": "ORD-006",
+      "product_id": "PROD-APP-002",
+      "quantity": 1,
+      "unit_price_cents": 19900,
+      "item_discount_cents": 2000,
+      "coupon_allocated_cents": 2081,
+      "paid_cents": 15819,
+      "unit_paid_amounts_cents": [
+        15819
+      ],
+      "conditions": {
+        "tags_intact": true,
+        "product_intact": true,
+        "used_outdoors": false,
+        "packaging_intact": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-APP-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-006-02",
+      "version": "1.0.0",
+      "order_id": "ORD-006",
+      "product_id": "PROD-DIG-003",
+      "quantity": 1,
+      "unit_price_cents": 7900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 919,
+      "paid_cents": 6981,
+      "unit_paid_amounts_cents": [
+        6981
+      ],
+      "conditions": {
+        "opened": false,
+        "activated": false,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-006-03",
+      "version": "1.0.0",
+      "order_id": "ORD-006",
+      "product_id": "PROD-GIFT-001",
+      "quantity": 1,
+      "unit_price_cents": 0,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 0,
+      "unit_paid_amounts_cents": [
+        0
+      ],
+      "conditions": {
+        "opened": false,
+        "activated": false,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "none",
+        "gift_returned": true
+      },
+      "gift_for_line_id": "LINE-006-01",
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-GIFT-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-007-01",
+      "version": "1.0.0",
+      "order_id": "ORD-007",
+      "product_id": "PROD-DIG-003",
+      "quantity": 3,
+      "unit_price_cents": 3333,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 1000,
+      "paid_cents": 8999,
+      "unit_paid_amounts_cents": [
+        3000,
+        3000,
+        2999
+      ],
+      "conditions": {
+        "opened": false,
+        "activated": false,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-008-01",
+      "version": "1.0.0",
+      "order_id": "ORD-008",
+      "product_id": "PROD-APP-002",
+      "quantity": 1,
+      "unit_price_cents": 17900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 17900,
+      "unit_paid_amounts_cents": [
+        17900
+      ],
+      "conditions": {
+        "tags_intact": true,
+        "product_intact": true,
+        "used_outdoors": false,
+        "packaging_intact": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-APP-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-009-01",
+      "version": "1.0.0",
+      "order_id": "ORD-009",
+      "product_id": "PROD-APP-002",
+      "quantity": 1,
+      "unit_price_cents": 17900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 17900,
+      "unit_paid_amounts_cents": [
+        17900
+      ],
+      "conditions": {
+        "tags_intact": true,
+        "product_intact": true,
+        "used_outdoors": false,
+        "packaging_intact": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-APP-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-010-01",
+      "version": "1.0.0",
+      "order_id": "ORD-010",
+      "product_id": "PROD-DIG-001",
+      "quantity": 1,
+      "unit_price_cents": 19900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 19900,
+      "unit_paid_amounts_cents": [
+        19900
+      ],
+      "conditions": {
+        "opened": true,
+        "activated": true,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "confirmed"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-DIG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-011-01",
+      "version": "1.0.0",
+      "order_id": "ORD-011",
+      "product_id": "PROD-CUS-001",
+      "quantity": 1,
+      "unit_price_cents": 5990,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 5990,
+      "unit_paid_amounts_cents": [
+        5990
+      ],
+      "conditions": {
+        "production_started": true,
+        "product_intact": true,
+        "quality_status": "reported"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-012-01",
+      "version": "1.0.0",
+      "order_id": "ORD-012",
+      "product_id": "PROD-DIG-003",
+      "quantity": 1,
+      "unit_price_cents": 7900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 7900,
+      "unit_paid_amounts_cents": [
+        7900
+      ],
+      "conditions": {
+        "opened": false,
+        "activated": false,
+        "product_intact": true,
+        "accessories_complete": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-013-01",
+      "version": "1.0.0",
+      "order_id": "ORD-013",
+      "product_id": "PROD-CUS-001",
+      "quantity": 1,
+      "unit_price_cents": 5990,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 5990,
+      "unit_paid_amounts_cents": [
+        5990
+      ],
+      "conditions": {
+        "production_started": true,
+        "product_intact": true,
+        "quality_status": "confirmed"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LINE-014-01",
+      "version": "1.0.0",
+      "order_id": "ORD-014",
+      "product_id": "PROD-APP-001",
+      "quantity": 1,
+      "unit_price_cents": 5900,
+      "item_discount_cents": 0,
+      "coupon_allocated_cents": 0,
+      "paid_cents": 5900,
+      "unit_paid_amounts_cents": [
+        5900
+      ],
+      "conditions": {
+        "tags_intact": true,
+        "product_intact": true,
+        "used_outdoors": false,
+        "packaging_intact": true,
+        "quality_status": "none"
+      },
+      "gift_for_line_id": null,
+      "evidence_refs": [
+        {
+          "kind": "product",
+          "id": "PROD-APP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRO-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "payments": [
+    {
+      "id": "PAY-001",
+      "version": "1.0.0",
+      "order_id": "ORD-001",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 29900,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-002",
+      "version": "1.0.0",
+      "order_id": "ORD-002",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 29900,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-003",
+      "version": "1.0.0",
+      "order_id": "ORD-003",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 13700,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-003",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-004",
+      "version": "1.0.0",
+      "order_id": "ORD-004",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 19900,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-004",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-005",
+      "version": "1.0.0",
+      "order_id": "ORD-005",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 6790,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-005",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-006",
+      "version": "1.0.0",
+      "order_id": "ORD-006",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 22800,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-006",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-007",
+      "version": "1.0.0",
+      "order_id": "ORD-007",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 9799,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-007",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-008",
+      "version": "1.0.0",
+      "order_id": "ORD-008",
+      "status": "paid",
+      "paid_at": "2026-06-30T10:00:00+08:00",
+      "amount_cents": 18700,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-008",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-009",
+      "version": "1.0.0",
+      "order_id": "ORD-009",
+      "status": "paid",
+      "paid_at": "2026-07-01T10:00:00+08:00",
+      "amount_cents": 17900,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-009",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-010",
+      "version": "1.0.0",
+      "order_id": "ORD-010",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 19900,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-010",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-011",
+      "version": "1.0.0",
+      "order_id": "ORD-011",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 6790,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-011",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-012",
+      "version": "1.0.0",
+      "order_id": "ORD-012",
+      "status": "paid",
+      "paid_at": "2026-10-08T10:00:00+08:00",
+      "amount_cents": 8700,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-012",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-013",
+      "version": "1.0.0",
+      "order_id": "ORD-013",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 6790,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-013",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "PAY-014",
+      "version": "1.0.0",
+      "order_id": "ORD-014",
+      "status": "paid",
+      "paid_at": "2026-10-01T10:00:00+08:00",
+      "amount_cents": 6700,
+      "currency": "CNY",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-014",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "logistics": [
+    {
+      "id": "LOG-001",
+      "version": "1.0.0",
+      "order_id": "ORD-001",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-002",
+      "version": "1.0.0",
+      "order_id": "ORD-002",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-003",
+      "version": "1.0.0",
+      "order_id": "ORD-003",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-003",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-004",
+      "version": "1.0.0",
+      "order_id": "ORD-004",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-004",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-005",
+      "version": "1.0.0",
+      "order_id": "ORD-005",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-005",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-006",
+      "version": "1.0.0",
+      "order_id": "ORD-006",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-006",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-007",
+      "version": "1.0.0",
+      "order_id": "ORD-007",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-007",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-008",
+      "version": "1.0.0",
+      "order_id": "ORD-008",
+      "status": "signed",
+      "shipped_at": "2026-06-30T10:00:00+08:00",
+      "signed_at": "2026-07-02T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-008",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-009",
+      "version": "1.0.0",
+      "order_id": "ORD-009",
+      "status": "signed",
+      "shipped_at": "2026-07-01T10:00:00+08:00",
+      "signed_at": "2026-07-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-009",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-010",
+      "version": "1.0.0",
+      "order_id": "ORD-010",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-010",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-011",
+      "version": "1.0.0",
+      "order_id": "ORD-011",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-011",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-012",
+      "version": "1.0.0",
+      "order_id": "ORD-012",
+      "status": "in_transit",
+      "shipped_at": "2026-10-08T10:00:00+08:00",
+      "signed_at": null,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-012",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-013",
+      "version": "1.0.0",
+      "order_id": "ORD-013",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-013",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "LOG-014",
+      "version": "1.0.0",
+      "order_id": "ORD-014",
+      "status": "signed",
+      "shipped_at": "2026-10-01T10:00:00+08:00",
+      "signed_at": "2026-10-03T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-014",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "after_sales": [
+    {
+      "id": "AS-001",
+      "version": "1.0.0",
+      "order_id": "ORD-006",
+      "return_reason": "no_reason",
+      "quality_status": "none",
+      "selections": [
+        {
+          "line_id": "LINE-006-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [
+        "LINE-006-03"
+      ],
+      "applied_at": "2026-10-07T10:00:00+08:00",
+      "status": "refund_processing",
+      "requested_cents": 15819,
+      "approved_cents": 15819,
+      "approved_merchandise_cents": 15819,
+      "approved_outbound_shipping_cents": 0,
+      "approved_at": "2026-10-08T12:00:00+08:00",
+      "refund_ids": [
+        "REF-001"
+      ],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-002",
+      "version": "1.0.0",
+      "order_id": "ORD-010",
+      "return_reason": "quality",
+      "quality_status": "confirmed",
+      "selections": [
+        {
+          "line_id": "LINE-010-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [],
+      "applied_at": "2026-10-07T10:00:00+08:00",
+      "status": "refund_processing",
+      "requested_cents": 19900,
+      "approved_cents": 19900,
+      "approved_merchandise_cents": 19900,
+      "approved_outbound_shipping_cents": 0,
+      "approved_at": "2026-10-08T12:00:00+08:00",
+      "refund_ids": [
+        "REF-002"
+      ],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-010-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-003",
+      "version": "1.0.0",
+      "order_id": "ORD-013",
+      "return_reason": "quality",
+      "quality_status": "confirmed",
+      "selections": [
+        {
+          "line_id": "LINE-013-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [],
+      "applied_at": "2026-10-07T10:00:00+08:00",
+      "status": "refund_completed",
+      "requested_cents": 6790,
+      "approved_cents": 6790,
+      "approved_merchandise_cents": 5990,
+      "approved_outbound_shipping_cents": 800,
+      "approved_at": "2026-10-08T12:00:00+08:00",
+      "refund_ids": [
+        "REF-003"
+      ],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-013-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-004",
+      "version": "1.0.0",
+      "order_id": "ORD-008",
+      "return_reason": "no_reason",
+      "quality_status": "none",
+      "selections": [
+        {
+          "line_id": "LINE-008-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [],
+      "applied_at": "2026-07-07T10:00:00+08:00",
+      "status": "refund_completed",
+      "requested_cents": 17900,
+      "approved_cents": 17900,
+      "approved_merchandise_cents": 17900,
+      "approved_outbound_shipping_cents": 0,
+      "approved_at": "2026-07-08T10:00:00+08:00",
+      "refund_ids": [
+        "REF-004"
+      ],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-008-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-005",
+      "version": "1.0.0",
+      "order_id": "ORD-009",
+      "return_reason": "no_reason",
+      "quality_status": "none",
+      "selections": [
+        {
+          "line_id": "LINE-009-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [],
+      "applied_at": "2026-07-07T10:00:00+08:00",
+      "status": "refund_completed",
+      "requested_cents": 17900,
+      "approved_cents": 17900,
+      "approved_merchandise_cents": 17900,
+      "approved_outbound_shipping_cents": 0,
+      "approved_at": "2026-07-08T10:00:00+08:00",
+      "refund_ids": [
+        "REF-005"
+      ],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-009-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-006",
+      "version": "1.0.0",
+      "order_id": "ORD-011",
+      "return_reason": "quality",
+      "quality_status": "reported",
+      "selections": [
+        {
+          "line_id": "LINE-011-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [],
+      "applied_at": "2026-10-08T10:00:00+08:00",
+      "status": "pending_verification",
+      "requested_cents": 6790,
+      "approved_cents": null,
+      "approved_merchandise_cents": null,
+      "approved_outbound_shipping_cents": null,
+      "approved_at": null,
+      "refund_ids": [],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-011-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-007",
+      "version": "1.0.0",
+      "order_id": "ORD-001",
+      "return_reason": "no_reason",
+      "quality_status": "none",
+      "selections": [
+        {
+          "line_id": "LINE-001-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [],
+      "applied_at": "2026-10-09T09:00:00+08:00",
+      "status": "pending_review",
+      "requested_cents": 29900,
+      "approved_cents": null,
+      "approved_merchandise_cents": null,
+      "approved_outbound_shipping_cents": null,
+      "approved_at": null,
+      "refund_ids": [],
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-001-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "AS-001",
+      "version": "1.1.0",
+      "order_id": "ORD-006",
+      "return_reason": "no_reason",
+      "quality_status": "none",
+      "selections": [
+        {
+          "line_id": "LINE-006-01",
+          "unit_indices": [
+            1
+          ]
+        }
+      ],
+      "gift_returned_line_ids": [
+        "LINE-006-03"
+      ],
+      "applied_at": "2026-10-07T10:00:00+08:00",
+      "status": "refund_completed",
+      "requested_cents": 15819,
+      "approved_cents": 15819,
+      "approved_merchandise_cents": 15819,
+      "approved_outbound_shipping_cents": 0,
+      "approved_at": "2026-10-08T12:00:00+08:00",
+      "refund_ids": [
+        "REF-001"
+      ],
+      "observed_at": "2026-10-09T12:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "order",
+          "id": "ORD-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-REF-002",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "refunds": [
+    {
+      "id": "REF-001",
+      "version": "1.0.0",
+      "after_sale_id": "AS-001",
+      "order_id": "ORD-006",
+      "status": "processing",
+      "initiated_at": "2026-10-08T12:00:00+08:00",
+      "approved_cents": 15819,
+      "settled_cents": null,
+      "settled_at": null,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "after_sale",
+          "id": "AS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "REF-002",
+      "version": "1.0.0",
+      "after_sale_id": "AS-002",
+      "order_id": "ORD-010",
+      "status": "processing",
+      "initiated_at": "2026-10-08T12:00:00+08:00",
+      "approved_cents": 19900,
+      "settled_cents": null,
+      "settled_at": null,
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "after_sale",
+          "id": "AS-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "REF-003",
+      "version": "1.0.0",
+      "after_sale_id": "AS-003",
+      "order_id": "ORD-013",
+      "status": "settled",
+      "initiated_at": "2026-10-08T12:00:00+08:00",
+      "approved_cents": 6790,
+      "settled_cents": 6790,
+      "settled_at": "2026-10-08T15:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "after_sale",
+          "id": "AS-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "REF-004",
+      "version": "1.0.0",
+      "after_sale_id": "AS-004",
+      "order_id": "ORD-008",
+      "status": "settled",
+      "initiated_at": "2026-07-08T10:00:00+08:00",
+      "approved_cents": 17900,
+      "settled_cents": 17900,
+      "settled_at": "2026-07-10T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "after_sale",
+          "id": "AS-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "REF-005",
+      "version": "1.0.0",
+      "after_sale_id": "AS-005",
+      "order_id": "ORD-009",
+      "status": "settled",
+      "initiated_at": "2026-07-08T10:00:00+08:00",
+      "approved_cents": 17900,
+      "settled_cents": 17900,
+      "settled_at": "2026-07-10T10:00:00+08:00",
+      "observed_at": "2026-10-09T10:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "after_sale",
+          "id": "AS-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "REF-001",
+      "version": "1.1.0",
+      "after_sale_id": "AS-001",
+      "order_id": "ORD-006",
+      "status": "settled",
+      "initiated_at": "2026-10-08T12:00:00+08:00",
+      "approved_cents": 15819,
+      "settled_cents": 15819,
+      "settled_at": "2026-10-09T11:00:00+08:00",
+      "observed_at": "2026-10-09T12:00:00+08:00",
+      "evidence_refs": [
+        {
+          "kind": "after_sale",
+          "id": "AS-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "policy_rule",
+          "id": "RULE-PRG-001",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "SNAP-DEMO-20261009",
+      "version": "1.1.0",
+      "captured_at": "2026-10-09T10:00:00+08:00",
+      "shop_id": "SHOP-DEMO-001",
+      "knowledge_version": "KNOWLEDGE-DRAFT-002",
+      "record_refs": [
+        {
+          "kind": "customer",
+          "id": "CUST-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "customer",
+          "id": "CUST-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-APP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-APP-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-DIG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-DIG-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-GIFT-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "campaign",
+          "id": "CAMPAIGN-COUPON-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "campaign",
+          "id": "CAMPAIGN-GIFT-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-012",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-014",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-001-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-002-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-003-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-004-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-005-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-02",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-03",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-007-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-008-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-009-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-010-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-011-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-012-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-013-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-014-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-012",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-014",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-012",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-014",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-005",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "SNAP-DEMO-20261009-REFRESH",
+      "version": "1.1.0",
+      "captured_at": "2026-10-09T12:00:00+08:00",
+      "shop_id": "SHOP-DEMO-001",
+      "knowledge_version": "KNOWLEDGE-DRAFT-002",
+      "record_refs": [
+        {
+          "kind": "customer",
+          "id": "CUST-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "customer",
+          "id": "CUST-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-APP-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-APP-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-DIG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-DIG-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-DIG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-CUS-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "product",
+          "id": "PROD-GIFT-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "campaign",
+          "id": "CAMPAIGN-COUPON-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "campaign",
+          "id": "CAMPAIGN-GIFT-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-012",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order",
+          "id": "ORD-014",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-001-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-002-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-003-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-004-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-005-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-02",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-006-03",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-007-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-008-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-009-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-010-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-011-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-012-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-013-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "order_line",
+          "id": "LINE-014-01",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-012",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "payment",
+          "id": "PAY-014",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-001",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-008",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-009",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-010",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-011",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-012",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-013",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "logistics",
+          "id": "LOG-014",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-005",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-006",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "after_sale",
+          "id": "AS-007",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-001",
+          "version": "1.1.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-002",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-003",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-004",
+          "version": "1.0.0"
+        },
+        {
+          "kind": "refund",
+          "id": "REF-005",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "policy.schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "schema_version": {
+      "enum": [
+        "1.0.0",
+        "1.1.0",
+        "1.1.1"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shop_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "category_ids": {
+      "$ref": "common.schema.json#/$defs/categories"
+    },
+    "effective_from": {
+      "$ref": "common.schema.json#/$defs/timestamp"
+    },
+    "effective_until": {
+      "$ref": "common.schema.json#/$defs/nullable_timestamp"
+    },
+    "selection_event": {
+      "$ref": "common.schema.json#/$defs/selection_event"
+    },
+    "review_status": {
+      "$ref": "common.schema.json#/$defs/review_status"
+    },
+    "lifecycle": {
+      "const": "draft"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "fictional_shop_policy"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/condition"
+            },
+            "minItems": 0
+          },
+          "effects": {
+            "type": "object",
+            "minProperties": 1
+          },
+          "exceptions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence_refs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "minItems": 0
+                }
+              },
+              "required": [
+                "description",
+                "evidence_refs"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0
+          },
+          "related_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/ref"
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "conditions",
+          "effects",
+          "exceptions",
+          "related_refs"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "schema_version",
+    "title",
+    "shop_id",
+    "category_ids",
+    "effective_from",
+    "effective_until",
+    "selection_event",
+    "review_status",
+    "lifecycle",
+    "source",
+    "rules"
+  ],
+  "additionalProperties": false
+}

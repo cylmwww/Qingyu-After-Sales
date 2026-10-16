@@ -1,0 +1,7 @@
+{
+  "id": "agent-fast",
+  "version": "1.1.0",
+  "strategy": "fast",
+  "experiment": true,
+  "context_items": 20
+}

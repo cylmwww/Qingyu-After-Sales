@@ -1,0 +1,8 @@
+.env
+.env.*
+.venv
+local
+personal
+frontend
+**/__pycache__
+.pytest_cache
