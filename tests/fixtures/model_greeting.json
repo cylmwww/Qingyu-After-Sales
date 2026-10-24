@@ -1,0 +1,5 @@
+[
+  {"label": "greeting", "confidence": 0.99, "rationale": "问候", "prompt_version": "fixture"},
+  {"complexity": "simple", "strategy": "direct", "confidence": 0.99},
+  {"answer": "你好，请告诉我需要咨询的商品或订单问题。", "citation_chunk_ids": [], "refused": false}
+]

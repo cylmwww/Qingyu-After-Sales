@@ -34,6 +34,7 @@ data/*.db
 data/*.sqlite
 *.sqlite3
 output/
+/output-test-run/
 
 # Vector / cache
 .qdrant/
@@ -48,8 +49,7 @@ output/
 .DS_Store
 Thumbs.db
 
-# 测试、评估与 GitHub 工作流
-/tests/
+# 评估与 GitHub 工作流
 /eval/
 /.github/
 

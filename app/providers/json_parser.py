@@ -26,10 +26,12 @@ def extract_json_object(text: str) -> dict[str, Any]:
         stripped = fenced.group(1).strip()
     try:
         payload = json.loads(stripped)
-        if isinstance(payload, dict):
-            return payload
     except json.JSONDecodeError:
         pass
+    else:
+        if not isinstance(payload, dict):
+            raise LLMOutputError("LLM JSON root is not an object")
+        return payload
     start = stripped.find("{")
     end = stripped.rfind("}")
     if start == -1 or end == -1 or end <= start:

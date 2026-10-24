@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Build the container on startup and release it on shutdown."""
-    settings = get_settings()
+    settings = app.state.settings
     configure_logging(settings)
     container = await build_container(settings)
     app.state.container = container
@@ -46,23 +46,19 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     context, and maps application errors to the stable JSON error envelope.
 
     Args:
-        settings: Optional settings override; when omitted the cached settings
-            are used. Passing an explicit value clears the settings cache first,
-            which is what tests rely on.
+        settings: 可选的应用配置；省略时读取缓存配置。
+            路由与生命周期共享创建应用时解析的同一份配置。
 
     Returns:
         A fully wired FastAPI application with the container bound in ``lifespan``.
     """
-    if settings is not None:
-        from app.config.settings import clear_settings_cache
-
-        clear_settings_cache()
     resolved = settings or get_settings()
     app = FastAPI(
         title="qingyu-new · 轻语客服",
         version="0.1.0",
         lifespan=lifespan,
     )
+    app.state.settings = resolved
     prefix = resolved.api_v1_prefix
     app.include_router(health.router, prefix=prefix)
     app.include_router(chat.router, prefix=prefix)

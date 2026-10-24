@@ -91,7 +91,7 @@ frontend/                  # React 工作台与前端构建配置
 knowledge/                 # 电商政策知识库
 scripts/                   # 知识导入、演示数据与开发启动脚本
 eval/                      # 评测入口、指标与数据集
-tests/                     # 单元、集成与 API 测试
+tests/                     # 真实 HTTP 场景与解析、融合算法单元测试
 docs/                      # 安装、接口与部署说明
 .env.example               # 配置项与默认值示例
 Dockerfile                 # 前后端应用镜像
@@ -282,7 +282,7 @@ docker compose exec api python -m scripts.seed_demo
 静态检查：
 
 ```powershell
-.\.venv\Scripts\python.exe -m ruff check app eval scripts tests
+.\.venv\Scripts\python.exe -m ruff check app scripts tests
 ```
 
 前端测试：
@@ -291,5 +291,5 @@ docker compose exec api python -m scripts.seed_demo
 npm --prefix frontend test
 ```
 
-测试默认清空模型密钥并使用测试后端，避免访问真实模型服务。回归测试验证程序机制，真实模型效果与业务正确性需要结合实际配置和人工复核单独评估。
+后端场景通过真实应用工厂与生命周期运行，使用临时 SQLite、仓库知识和演示订单，显式关闭外部服务与重型模型；模型协议场景仅连接本机 HTTP 替身。单元测试集中验证 JSON 解析、RRF 融合与前端 SSE 解码边界，不替代完整功能覆盖。运行产物、覆盖矩阵与尚未验证的范围见 [测试说明](tests/README.md)。真实模型效果、外部存储和完整浏览器交互仍需单独验证。
 
